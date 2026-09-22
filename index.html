@@ -796,9 +796,9 @@
 
   <div class="supportBar">
     <span class="heart">&#10084;</span> Found this useful?
-    <button type="button" class="donateBtn" data-price="pri_01m3243gy58a5sf9vh1azpacy3">$5</button>
-    <button type="button" class="donateBtn" data-price="pri_01m324405188mf8y0wfr2ep1m7">$10</button>
-    <button type="button" class="donateBtn" data-price="pri_01m3244d3y1aw5gwzckawb365r">$15</button>
+    <button type="button" class="donateBtn" data-price="pri_01m34zspbdd0q0hbd3qf3xz165">$5</button>
+    <button type="button" class="donateBtn" data-price="pri_01m34zt8sx0mcgtsrjkscaqcax">$10</button>
+    <button type="button" class="donateBtn" data-price="pri_01m34ztq6fh5m7xdz6t9hfab12">$15</button>
   </div>
 </div>
 
@@ -1594,14 +1594,39 @@
   })();
 
   // ---------- donations (Paddle) ----------
+  // Once a visitor completes a real checkout, remember it in localStorage so
+  // the donation bar stops asking them again on this browser/device. There's
+  // no backend/login here, so this can't follow someone across devices -
+  // that's the tradeoff for keeping this tool fully backend-free.
   (function(){
     var buttons = document.querySelectorAll('.donateBtn');
+    var supportBar = document.querySelector('.supportBar');
     if (!buttons.length) return;
+
+    var DONATED_KEY = 'jsonTreeViewerDonated';
+    function hasDonated(){
+      try{ return localStorage.getItem(DONATED_KEY) === 'true'; }catch(e){ return false; }
+    }
+    function markDonated(){
+      try{ localStorage.setItem(DONATED_KEY, 'true'); }catch(e){}
+      if (supportBar) supportBar.style.display = 'none';
+    }
+
+    if (hasDonated()){
+      if (supportBar) supportBar.style.display = 'none';
+      return; // already gave - don't even bother initializing Paddle
+    }
+
     if (typeof Paddle === 'undefined') return; // blocked/unavailable in this preview
 
     try{
-      Paddle.Environment.set('production');
-      Paddle.Initialize({ token: 'live_265ee8c2e064b91807013081d3b' });
+      Paddle.Environment.set('sandbox'); // TODO: switch back to 'production' + live token once checkout is confirmed working
+      Paddle.Initialize({
+        token: 'test_1576842a946664647539c2f5472',
+        eventCallback: function(event){
+          if (event && event.name === 'checkout.completed') markDonated();
+        }
+      });
     }catch(e){ return; }
 
     buttons.forEach(function(btn){
