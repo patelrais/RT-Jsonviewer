@@ -329,6 +329,15 @@
     padding:10px 8px;
     overflow:auto;
   }
+  .emptyState{
+    padding:40px 20px;
+    text-align:center;
+    color:var(--muted);
+    font-size:13px;
+  }
+  .emptyState p{margin:0 0 6px;}
+  .emptyState a{color:var(--link);font-weight:bold;text-decoration:none;cursor:pointer;}
+  .emptyState a:hover{text-decoration:underline;}
 
   .toTopBtn{
     position:absolute;
@@ -1548,9 +1557,19 @@
   })();
 
   // ---------- boot ----------
+  function showEmptyState(){
+    elTreeCol.innerHTML =
+      '<div class="emptyState">' +
+        '<p>Nothing to show yet.</p>' +
+        '<p>Paste some JSON on the <a id="emptyStateTextLink">Text</a> tab first.</p>' +
+      '</div>';
+    var link = document.getElementById('emptyStateTextLink');
+    if (link) link.addEventListener('click', function(){ showTab('text'); elInput.focus(); });
+  }
+
   function renderAll(){
     var text = elInput.value.trim();
-    if (!text){ setError(null); elTreeCol.innerHTML=''; elGridBody.innerHTML=''; currentData=null; return; }
+    if (!text){ setError(null); showEmptyState(); elGridBody.innerHTML=''; currentData=null; return; }
     try{
       currentData = JSON.parse(text);
       setError(null);
