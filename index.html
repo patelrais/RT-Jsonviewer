@@ -796,9 +796,9 @@
 
   <div class="supportBar">
     <span class="heart">&#10084;</span> Support this free tool
-    <button type="button" class="donateBtn" data-price="pri_01m34zspbdd0q0hbd3qf3xz165">$5</button>
-    <button type="button" class="donateBtn" data-price="pri_01m34zt8sx0mcgtsrjkscaqcax">$10</button>
-    <button type="button" class="donateBtn" data-price="pri_01m34ztq6fh5m7xdz6t9hfab12">$15</button>
+    <button type="button" class="donateBtn" data-price="pri_01m3243gy58a5sf9vh1azpacy3">$5</button>
+    <button type="button" class="donateBtn" data-price="pri_01m324405188mf8y0wfr2ep1m7">$10</button>
+    <button type="button" class="donateBtn" data-price="pri_01m3244d3y1aw5gwzckawb365r">$15</button>
   </div>
 </div>
 
@@ -1620,9 +1620,9 @@
     if (typeof Paddle === 'undefined') return; // blocked/unavailable in this preview
 
     try{
-      Paddle.Environment.set('sandbox'); // TODO: switch back to 'production' + live token once checkout is confirmed working
+      Paddle.Environment.set('production');
       Paddle.Initialize({
-        token: 'test_1576842a946664647539c2f5472',
+        token: 'live_265ee8c2e064b91807013081d3b',
         eventCallback: function(event){
           if (event && event.name === 'checkout.completed') markDonated();
         }
