@@ -13,10 +13,14 @@
 <meta property="og:title" content="JSON Tree Viewer - Free Online JSON Formatter & Viewer">
 <meta property="og:description" content="Paste any JSON and instantly view it as a collapsible tree, browse it as a flat key/value grid, and search through it. Free, fast, and entirely client-side.">
 <meta property="og:url" content="https://jsonviewer.tasqen.com/">
+<meta property="og:image" content="https://tasqen.com/og-image.webp">
+<meta property="og:image:width" content="2000">
+<meta property="og:image:height" content="1999">
 
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="JSON Tree Viewer - Free Online JSON Formatter & Viewer">
 <meta name="twitter:description" content="Paste any JSON and instantly view it as a collapsible tree, browse it as a flat key/value grid, and search through it.">
+<meta name="twitter:image" content="https://tasqen.com/og-image.webp">
 
 <script type="application/ld+json">
 {
@@ -162,6 +166,7 @@
     color-scheme: dark;
   }
   *{box-sizing:border-box;}
+  .srOnly{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
   html,body{height:100%;}
   body{
     margin:0;
@@ -764,6 +769,7 @@
 </style>
 
 <div class="wrap">
+  <h1 class="srOnly">JSON Tree Viewer - Free Online JSON Formatter, Viewer and Search</h1>
   <div class="app">
     <div class="tabs">
       <div class="tab" id="tabViewerBtn">Viewer</div>
