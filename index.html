@@ -235,16 +235,36 @@
   .themeToggle svg{width:19px;height:19px;display:block;fill:currentColor;}
   .themeToggle:hover{color:var(--link);}
   .themeReset{
-    margin-left:auto;
     display:none;
     align-items:center;
     font-size:15px;
+    padding:0 8px 0 4px;
     color:var(--muted);
     cursor:pointer;
     user-select:none;
   }
   .themeReset.show{display:flex;}
   .themeReset:hover{color:var(--link);}
+
+  .toolLink{
+    padding:0 14px;
+    font-size:13px;
+    font-weight:600;
+    color:var(--link);
+    text-decoration:none;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+  }
+  .toolLink:first-of-type{margin-left:auto;}
+  .toolLink:hover{text-decoration:underline;}
+
+  @media (max-width:480px){
+    .tabs{flex-wrap:wrap;}
+    .toolLink:first-of-type{margin-left:0;}
+    .toolLink{padding:6px 8px;font-size:12px;}
+    .themeToggle{padding:0 10px;}
+  }
 
   .toolbar{
     display:flex;
@@ -748,6 +768,8 @@
     <div class="tabs">
       <div class="tab" id="tabViewerBtn">Viewer</div>
       <div class="tab active" id="tabTextBtn">Text</div>
+      <a class="toolLink" href="https://htmlviewer.tasqen.com/" target="_blank" rel="noopener">HTML Viewer</a>
+      <a class="toolLink" href="https://password.tasqen.com/" target="_blank" rel="noopener">Password Generator</a>
       <span class="themeReset" id="themeReset" title="Reset to automatic (follow local time)">&#8635;</span>
       <div class="themeToggle" id="themeToggle" title="Toggle dark mode"><span id="themeIcon">&#9789;</span></div>
     </div>
